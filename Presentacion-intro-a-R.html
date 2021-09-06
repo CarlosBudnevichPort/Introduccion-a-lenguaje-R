@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introducción a R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Carlos Budnevich" />
+    <link rel="stylesheet" href="docs/xaringan/ath-slides.css" type="text/css" />
+    <link rel="stylesheet" href="docs/xaringan/xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: inverse middle center
+
+# **Introducción a R**
+
+Carlos Budnevich 
+
+Métodos estadísticos multivariados de interdependencia
+
+6 de septiembre 2021
+
+---
+
+# Programa de hoy 
+
+- Sección teórica: Sobre los fundamentos y algunas consideraciones preliminares
+
+- Sección práctica: Revisión de código básico de manipulación y exploración de datos
+
+- El lema: *¡Aprender haciendo!*
+.center[
+![scale:80](lenguajeR.jpg)
+]
+---
+
+# Sobre R
+
+- Es un lenguaje de programación enfocado en el análisis de datos  
+
+- El paradigma que subyace se vincula con la orientación a objetos y la creación de funciones 
+
+- En un comienzo, solemos utilizar funciones ya creadas disponibles en las diferentes librerías
+
+- Curva de aprendizaje lento: Al principio es un poco más complejo, luego más sencillo y un_ va advirtiendo la enorme versatilidad (por ej., estas laminas fueron creadas en R)
+---
+
+# ¿Por qué usarlo?
+
+- Gratuito y de código abierto
+
+- Versatilidad en su uso en términos de las multiples análisis estadisticos que se pueden hacer en R
+
+- No sólo análisis estadístico: Creación de docs. de presentación, páginas web, otros.
+
+- Alta potencia grafica: Genera gráficos con una calidad dificil de replicar por otros softwares/lenguajes
+
+- Eficiencia, reproducibilidad, y control sobre el flujo de trabajo: Código abierto que favorece trabajo colaborativo 
+
+---
+
+
+# Comparación R vs otros lenguajes/software 
+
+- vs stata 
+
+- vs SPSS
+
+- vs Python
+---
+ 
+# Iniciemonos
+
+- Para descargar R: ver [acá](https://www.r-project.org/)
+
+- Para descargar R studio (entorno que facilita uso de R): presionar [aquí](https://www.rstudio.com/products/rstudio/download/)
+
+- Elegir opción de descarga según su sistema operativo
+
+---
+ 
+
+#Entorno de R studio 
+
+![scale:90](entorno r.png)
+
+---
+
+# Elementos básicos de funcionamiento 
+
+- Objetos y funciones como unidad básica de funcionamiento
+
+- Correr código o sintaxis en el editor de sintaxis
+
+- Los nuevos objetos creados se van guardando en la pestaña superior derecha "environment"
+
+- Gráficos se van mostrando en pestaña inferior derecha, en "plots"
+
+---
+
+# Veamos un breve ejemplo
+
+- Creación de un objeto: Se verá en nuestro entorno de trabajo
+
+
+```r
+x&lt;- 10 + 15
+x
+```
+
+```
+## [1] 25
+```
+
+- Cargar una base de datos: También aparecerá en nuestra pestaña "environment" 
+
+
+```r
+load("input/data/original/data.RData")
+```
+
+---
+
+# Funciones
+
+- Definamos una función 
+
+
+```r
+fahrenheit_to_celsius &lt;- function(temp_F) {
+  temp_C &lt;- (temp_F - 32) * 5 / 9
+  return(temp_C)
+}
+
+fahrenheit_to_celsius(32)
+```
+
+```
+## [1] 0
+```
+- Pero... No es necesario complicarse tanto y podemos hacer uso de las funciones ya creadas que proporcionan las librerías. En caso de programación más avanzada puede ser útil el crear nuestras propias funciones
+
+---
+
+class:center, middle
+
+**Descargar Zip con archivos e ir al script "taller_practico_introaR"**
+
+## Recuerden el lema: ¡Aprender haciendo!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="docs/xaringan/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
